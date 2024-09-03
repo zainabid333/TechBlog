@@ -1,0 +1,47 @@
+<div class="max-w-4xl mx-auto">
+  <h2 class="text-2xl font-bold mb-4">Your Dashboard</h2>
+  
+  <div class="mb-8">
+    <h3 class="text-xl font-semibold mb-2">Create a New Post</h3>
+    <form class="new-post-form">
+      <div class="mb-4">
+        <label for="post-title" class="block text-gray-700 text-sm font-bold mb-2">Title:</label>
+        <input type="text" id="post-title" name="title" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+      </div>
+      <div class="mb-4">
+        <label for="post-content" class="block text-gray-700 text-sm font-bold mb-2">Content:</label>
+        <textarea id="post-content" name="content" rows="4" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+      </div>
+      <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Create Post</button>
+    </form>
+  </div>
+  
+  <div>
+    <h3 class="text-xl font-semibold mb-2">Your Posts</h3>
+    {{
+#if
+ posts.length}}
+      {{
+#each
+ posts as |post|}}
+        <div class="bg-white shadow-md rounded-lg overflow-hidden mb-4">
+          <div class="p-4">
+            <h4 class="text-lg font-bold mb-2">{{post.title}}</h4>
+            <p class="text-gray-700">{{post.content}}</p>
+            <p class="text-sm text-gray-500 mt-2">Posted on {{format_date post.createdAt}}</p>
+          </div>
+          <div class="bg-gray-100 px-4 py-2 flex justify-between">
+            <a href="/post/{{post.id}}" class="text-blue-500 hover:underline">View</a>
+            <button class="text-red-500 hover:underline delete-post" data-id="{{post.id}}">Delete</button>
+          </div>
+        </div>
+      {{
+/each
+}}
+    {{else}}
+      <p class="text-gray-700">You haven't created any posts yet.</p>
+    {{
+/if
+}}
+  </div>
+</div>

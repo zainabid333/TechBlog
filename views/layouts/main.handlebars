@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tech Blog</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="flex flex-col min-h-screen">
+  <header class="bg-gray-800 text-white p-4">
+    <nav class="container mx-auto flex justify-between items-center">
+      <a href="/" class="text-2xl font-bold">Tech Blog</a>
+      <div>
+        <a href="/" class="px-3 py-2 rounded hover:bg-gray-700">Home</a>
+        {{#if logged_in}}
+        <a href="/dashboard" class="px-3 py-2 rounded hover:bg-gray-700">Dashboard</a>
+        <button id="logout" class="px-3 py-2 rounded hover:bg-gray-700">Logout</button>
+        {{else}}
+        <a href="/login" class="px-3 py-2 rounded hover:bg-gray-700">Login</a>
+        <a href="/signup" class="px-3 py-2 rounded hover:bg-gray-700">Sign Up</a>
+        {{/if}}
+      </div>
+    </nav>
+  </header>
+
+  <main class="container mx-auto mt-4 flex-grow">
+    {{{ body }}}
+  </main>
+
+  <footer class="bg-gray-800 text-white p-4 mt-8">
+    <div class="container mx-auto text-center">
+      &copy; 2024 Tech Blog
+    </div>
+  </footer>
+
+  {{
+#if
+ logged_in}}
+  <script src="/js/logout.js"></script>
+  {{
+/if
+}}
+</body>
+
+</html>
