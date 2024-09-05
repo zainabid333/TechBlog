@@ -1,6 +1,10 @@
 const router = require("express").Router();
+const userRoutes = require("./userController");
+const postRoutes = require("./postRoutes");
+const commentRoutes = require("./commentController");
 
-router.get("/test", (req, res) => {
-  res.json({ message: "api called" });
-});
+router.use("/users", userRoutes);
+router.use("/posts", postRoutes);
+router.use("/comments", commentRoutes);
+
 module.exports = router;
