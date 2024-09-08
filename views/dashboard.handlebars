@@ -1,5 +1,7 @@
 <h2>Your Dashboard</h2>
 
+<p>Welcome, {{username}}!</p>
+
 <section>
   <h3>Your Posts</h3>
   {{#each posts}}
@@ -10,13 +12,13 @@
       <button class="delete-btn" data-id="{{this.id}}">Delete</button>
     </article>
   {{else}}
-    <p>No posts yet.</p>
+    <p>No posts</p>
   {{/each}}
 </section>
 
 <section>
   <h3>Create New Post</h3>
-  <form id="new-post-form">
+  <form id="new-post-form" action="/api/posts" method="post">
     <input type="text" name="title" placeholder="Post Title" required />
     <textarea name="content" placeholder="Post Content" required></textarea>
     <button type="submit">Create</button>

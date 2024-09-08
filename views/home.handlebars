@@ -1,12 +1,28 @@
 {{#each posts}}
-    <article>
-        <h2>{{this.title}}</h2>
-        <p>by {{this.user.username}} on {{format_date this.createdAt}}</p>
-        <p>{{this.content}}</p>
-        {{#if ../logged_in}}
-            <a href="/post/{{this.id}}">View Post</a>
-        {{/if}}
-    </article>
+  <article>
+    <h2>{{this.title}}</h2>
+    <p>by {{this.user.username}} on {{format_date this.createdAt}}</p>
+    <p>{{this.content}}</p>
+    <a href="/post/{{this.id}}">View Post</a>
+  </article>
 {{else}}
-    <p>No blog posts yet!</p>
+  <p>No blog posts yet!</p>
 {{/each}}
+
+{{#if logged_in}}
+  <h2>welcome {{this.user.username}}</h2>
+  <section>
+    <h3>Create New Post</h3>
+    <form id="new-post-form" action="/api/posts" method="post">
+      <input type="text" name="title" placeholder="Post Title" required />
+      <textarea name="content" placeholder="Post Content" required></textarea>
+      <button type="submit">Create</button>
+    </form>
+  </section>
+{{else}}
+  <p>Please
+    <a href="/login">log in</a>
+    or
+    <a href="/signup">sign up</a>
+    to create a new post or comment.</p>
+{{/if}}

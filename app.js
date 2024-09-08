@@ -32,7 +32,6 @@ const sess = {
 app.use(session(sess));
 app.use(routes);
 
-app.use(require("./controllers/"));
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () =>

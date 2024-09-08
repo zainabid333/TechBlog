@@ -1,49 +1,72 @@
 const router = require("express").Router();
 const { User } = require("../../models");
 
-//sign up routes
-
+// SignUp route
 router.post("/signup", async (req, res) => {
   try {
-    const newUser = await User.create({
-      username: req.body.username,
-      password: req.body.password,
-    });
-    req.session.save(() => {
-      req.session.user_id = newUser.id;
-      req.session.logged_in = true;
-
-      res.status(200).json(newUser);
-    });
-  } catch (err) {
-    res.status(400).json(err);
+    const { username, password } = req.body;
+    const user = await User.create({ username, password });
+    req.session.userId = user.id; // Store the user ID in session
+    req.session.logged_in = true; // Set logged_in to true
+    res.redirect("/login");
+  } catch (error) {
+    console.error("Signup error:", error);
+    res.status(400).json({ error: "Signup failed. Please try again." });
   }
 });
 
-//login routes
+// Login route
 router.post("/login", async (req, res) => {
   try {
-    const user = await User.findOne({ where: { username: req.body.username } });
+    const {username, password } = req.body;
+    console.log("Login attempt with email:", username);
+
+    const user = await User.findOne({ where: { username } });
     if (!user) {
-      res
+      console.log("User not found");
+      return res
         .status(400)
-        .json({ message: "Incorrect username or password, please try again" });
-      return;
+        .render("login", { error: "Invalid email or password." });
     }
-    const validPassword = await user.checkPassword(req.body.password);
-    if (!validPassword) {
-      res
-        .status(400)
-        .json({ message: "Incorrect username or password, please try again" });
-      return;
+
+    console.log("Stored hashed password:", user.password);
+    console.log("Raw password from request:", password);
+
+    const isPasswordValid = user.checkPassword(password);
+    console.log("Password comparison result:", isPasswordValid);
+
+    if (isPasswordValid) {
+      req.session.userId = user.id;
+      console.log("Session userId before save:", req.session.userId);
+      req.session.save((err) => {
+        if (err) {
+          console.error("Session save error:", err);
+          return res.status(500).render("login", {
+            error: "Failed to save session. Please try again.",
+          });
+        }
+        console.log("Session saved successfully:", req.session);
+        res.redirect("/");
+      });
+    } else {
+      console.log("Invalid password");
+      res.status(400).render("login", { error: "Invalid email or password." });
     }
-    req.session.save(() => {
-      req.session.user_id = user.id;
-      req.session.logged_in = true;
-      res.json({ user: user, message: "You are now logged in!" });
+  } catch (error) {
+    console.error("Login error:", error);
+    res
+      .status(500)
+      .render("login", { error: "Login failed. Please try again." });
+  }
+});
+
+router.post("/logout", (req, res) => {
+  if (req.session.logged_in) {
+    req.session.destroy(() => {
+      res.status(204).end();
     });
-  } catch (err) {
-    res.status(400).json(err);
+  } else {
+    res.status(404).end();
   }
 });
 
