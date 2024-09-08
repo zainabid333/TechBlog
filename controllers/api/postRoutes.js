@@ -15,8 +15,21 @@ router.post("/", withAuth, async (req, res) => {
     res.status(400).json(err);
   }
 });
-//update a post
 
+//rendering the edit post page  
+router.get("/edit-post/:id",withAuth, async ( req, res) => {
+  try {
+    const postData = await Post.findByPk(req.params.id);
+    const post = postData.get({ plain: true });
+    res.render("edit-post", { post });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+  
+});
+
+
+//update a post
 router.put("/:id", withAuth, async (req, res) => {
   try {
     const updatedPost = await Post.update(
@@ -26,7 +39,7 @@ router.put("/:id", withAuth, async (req, res) => {
       },
       {
         where: {
-          id: req.session.user_id,
+          id: req.session.userId,
         },
       }
     );
@@ -45,7 +58,7 @@ router.delete("/:id", withAuth, async (req, res) => {
     const deletedPost = await Post.destroy({
       where: {
         id: req.params.id,
-        user_id: req.session.user_id,
+        user_id: req.session.userId,
       },
     });
     if (!deletedPost) {
