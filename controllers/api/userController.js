@@ -18,55 +18,29 @@ router.post("/signup", async (req, res) => {
 // Login route
 router.post("/login", async (req, res) => {
   try {
-    const {username, password } = req.body;
-    console.log("Login attempt with email:", username);
+    const { username, password } = req.body;
+    const userData = await User.findOne({ where: { username } });
 
-    const user = await User.findOne({ where: { username } });
-    if (!user) {
-      console.log("User not found");
-      return res
-        .status(400)
-        .render("login", { error: "Invalid email or password." });
+    if (!userData) {
+      res.status(400).json({ message: "Incorrect username or password" });
+      return;
     }
 
-    console.log("Stored hashed password:", user.password);
-    console.log("Raw password from request:", password);
+    const validPassword = await userData.checkPassword(password);
 
-    const isPasswordValid = user.checkPassword(password);
-    console.log("Password comparison result:", isPasswordValid);
-
-    if (isPasswordValid) {
-      req.session.userId = user.id;
-      console.log("Session userId before save:", req.session.userId);
-      req.session.save((err) => {
-        if (err) {
-          console.error("Session save error:", err);
-          return res.status(500).render("login", {
-            error: "Failed to save session. Please try again.",
-          });
-        }
-        console.log("Session saved successfully:", req.session);
-        res.redirect("/");
-      });
-    } else {
-      console.log("Invalid password");
-      res.status(400).render("login", { error: "Invalid email or password." });
+    if (!validPassword) {
+      res.status(400).json({ message: "Incorrect username or password" });
+      return;
     }
-  } catch (error) {
-    console.error("Login error:", error);
-    res
-      .status(500)
-      .render("login", { error: "Login failed. Please try again." });
-  }
-});
 
-router.post("/logout", (req, res) => {
-  if (req.session.logged_in) {
-    req.session.destroy(() => {
-      res.status(204).end();
+    req.session.save(() => {
+      req.session.userId = userData.id;
+      req.session.logged_in = true;
+
+      res.json({ user: userData, message: "You are now logged in!" });
     });
-  } else {
-    res.status(404).end();
+  } catch (err) {
+    res.status(400).json(err);
   }
 });
 

@@ -45,3 +45,36 @@
 //     }
 //   }
 // };
+
+document.addEventListener("DOMContentLoaded", (event) => {
+  const editButton = document.getElementById("edit-post-btn");
+  if (editButton) {
+    editButton.addEventListener("click", () => {
+      window.location.href = "/edit-psot/{{selectedPost.id}}";
+    });
+  }
+  const commentForm = document.getElementById("new-comment-form");
+  if (commentForm) {
+    commentForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const content = e.target.elements.content.value;
+
+      try {
+        const response = await fetch("/api/comments", {
+          method: "POST",
+          body: JSON.stringify({ content, post_id: "{{selectedPost.id}}" }),
+          headers: { "Content-Type": "application/json" },
+        });
+
+        if (response.ok) {
+          document.location.reload();
+        } else {
+          alert("Failed to post comment");
+        }
+      } catch (err) {
+        console.error("Error:", err);
+        alert("An error occurred while posting the comment");
+      }
+    });
+  }
+});
