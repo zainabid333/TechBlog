@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Post } = require("../../models");
+const { Post, User } = require("../../models");
 const withAuth = require("../../utils/auth");
 
 //create a new post
@@ -16,18 +16,34 @@ router.post("/", withAuth, async (req, res) => {
   }
 });
 
-//rendering the edit post page  
-router.get("/edit-post/:id",withAuth, async ( req, res) => {
+// Get a post by ID
+router.get("/:id", async (req, res) => {
   try {
-    const postData = await Post.findByPk(req.params.id);
-    const post = postData.get({ plain: true });
-    res.render("edit-post", { post });
+    const postData = await Post.findByPk(req.params.id, {
+      include: [{ model: User, attributes: ["username"] }],
+    });
+
+    if (!postData) {
+      res.status(404).json({ message: "No post found with this id!" });
+      return;
+    }
+
+    res.status(200).json(postData);
   } catch (err) {
     res.status(500).json(err);
   }
-  
 });
 
+//rendering the edit post page
+router.get("/edit-post/:id", withAuth, async (req, res) => {
+  try {
+    const postData = await Post.findByPk(req.params.id);
+    const post = postData.get({ plain: true });
+    res.render("editPost", { post });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 //update a post
 router.put("/:id", withAuth, async (req, res) => {

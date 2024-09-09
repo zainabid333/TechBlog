@@ -1,4 +1,4 @@
-<form id="edit-post-form">
+<form id="post-form" method="post">
   <input type="hidden" name="post_id" value="{{post.id}}" />
   <div>
     <label for="title">Title</label>
@@ -13,7 +13,15 @@
   </div>
   <div>
     <label for="content">Content</label>
-    <textarea id="content" name="content" required>{{post.content}}</textarea>
+    <textarea
+      id="content"
+      name="content"
+      required
+      class="w-full px-3 py-2 border rounded-md"
+    >{{post.content}}</textarea>
   </div>
-  <button type="submit">Save Changes</button>
+  <button
+    type="submit"
+    class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 mt-4"
+  >Save Changes</button>
 </form>

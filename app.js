@@ -10,7 +10,10 @@ const helpers = require("./utils/helpers");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const hbs = exphbs.create({ helpers });
+const hbs = exphbs.create({
+  helpers,
+  partialsDir: path.join(__dirname, "views/partials"),
+});
 
 app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
@@ -31,7 +34,6 @@ const sess = {
 
 app.use(session(sess));
 app.use(routes);
-
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () =>
