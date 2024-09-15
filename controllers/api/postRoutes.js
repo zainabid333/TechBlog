@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Post, User } = require("../../models");
+const { Post, User, Comment } = require("../../models");
 const withAuth = require("../../utils/auth");
 
 //create a new post
@@ -15,12 +15,17 @@ router.post("/", withAuth, async (req, res) => {
     res.status(400).json(err);
   }
 });
-
-// Get a post by ID
-router.get("/:id", async (req, res) => {
+// Get a single post with its comments and user information
+router.get("/view/:id", withAuth, async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id, {
-      include: [{ model: User, attributes: ["username"] }],
+      include: [
+        { model: User, attributes: ["username"] },
+        {
+          model: Comment,
+          include: [{ model: User, attributes: ["username"] }],
+        },
+      ],
     });
 
     if (!postData) {
@@ -28,12 +33,18 @@ router.get("/:id", async (req, res) => {
       return;
     }
 
-    res.status(200).json(postData);
+    const post = postData.get({ plain: true });
+    res.render("single-post", {
+      ...post,
+      logged_in: req.session.logged_in,
+    });
   } catch (err) {
-    res.status(500).json(err);
+    console.error("Detailed error:", err);
+    res
+      .status(500)
+      .json({ message: "Internal server error", error: err.message });
   }
 });
-
 //rendering the edit post page
 router.get("/edit-post/:id", withAuth, async (req, res) => {
   try {

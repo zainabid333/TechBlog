@@ -1,0 +1,15 @@
+<h2>Your Posts</h2>
+<button id="new-post-btn">+ New Post</button>
+
+<div class="post-list">
+  {{#each posts}}
+    <article class="dashboard-post">
+      <h3>{{title}}</h3>
+      <p>Posted on {{format_date createdAt}}</p>
+      <button class="view-post-btn"><a href="/api/posts/view/{{id}}" class="view-post-btn"> view</a></button>
+      
+      <button class="edit-post-btn" data-id="{{id}}">Edit</button>
+      <button class="delete-post-btn" data-id="{{id}}">Delete</button>
+    </article>
+  {{/each}}
+</div>

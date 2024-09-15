@@ -1,0 +1,21 @@
+<article class="post">
+  <h2>{{title}}</h2>
+  <p>Posted by {{user.username}} on {{format_date createdAt}}</p>
+  <p>{{content}}</p>
+</article>
+
+{{#if logged_in}}
+  <form class="comment-form" action="/api/comments/addComment" method="post">
+    <textarea name="content"></textarea>
+    <button type="submit">Add Comment</button>
+  </form>
+{{/if}}
+
+<div class="comments">
+  {{#each comments}}
+    <div class="comment">
+      <p>{{content}}</p>
+      <p>Commented BY: {{user.username}},ON: {{format_date createdAt}}</p>
+    </div>
+  {{/each}}
+</div>
