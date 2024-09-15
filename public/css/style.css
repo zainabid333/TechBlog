@@ -88,7 +88,7 @@ form {
   background-color: #2b2b2b;
   padding: 20px;
   border-radius: 5px;
-  margin-bottom: 20px;
+  margin-bottom: 2 0px;
   color: #e6f3e6;
 }
 
@@ -174,7 +174,7 @@ footer {
   background-color: #2b2b2b;
   padding: 20px;
   border-radius: 5px;
-  color: #e6f3e6;
+  color: #81b681;
 }
 
 .login-form h2,
@@ -196,7 +196,7 @@ footer {
 
 .login-form input,
 .signup-form input {
-  width: 100%;
+  width: 75%;
   padding: 8px;
   border: 1px solid #e6f3e6;
   border-radius: 3px;
@@ -206,13 +206,14 @@ footer {
 
 .login-form button,
 .signup-form button {
-  width: 100%;
+  width: 25%;
   padding: 10px;
   background-color: #e6f3e6;
   color: #2b2b2b;
   border: none;
   border-radius: 3px;
   cursor: pointer;
+  
   transition: background-color 0.3s;
 }
 

@@ -59,5 +59,10 @@ router.get("/dashboard", withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
+router.get("/dashboard/new-post", withAuth, (req, res) => {
+  res.render("new-post", {
+    logged_in: true,
+  });
+});
 
 module.exports = router;
