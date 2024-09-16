@@ -5,10 +5,7 @@
     <article class="dashboard-post">
       <h3>{{title}}</h3>
       <p>Posted on {{format_date createdAt}}</p>
-      <button class="view-post-btn"><a
-          href="/api/posts/view/{{id}}"
-          class="view-post-btn"
-        >view</a></button>
+      <button class="view-post-btn" data-id="{{id}}">View</button>
       <button class="edit-post-btn" data-id="{{id}}">Edit</button>
       <button class="delete-post-btn" data-id="{{id}}">Delete</button>
     </article>

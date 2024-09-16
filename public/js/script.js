@@ -1,39 +1,54 @@
-// Purpose: To handle the front-end logic for the post page
 document.addEventListener("DOMContentLoaded", (event) => {
   const newPost = document.getElementById("new-post-btn");
-  newPost.addEventListener("click", () => {
-    document.location.replace("/dashboard/new-post");
-  });
+  if (newPost) {
+    newPost.addEventListener("click", () => {
+      document.location.replace("/dashboard/new-post");
+    });
+  }
 
-  const viewPostButtons = document.querySelectorAll("view-post-btn");
+  const viewPostButtons = document.querySelectorAll(".view-post-btn");
   viewPostButtons.forEach((button) => {
     button.addEventListener("click", viewPost);
   });
 
-  const deletePostButtons = document.getElementsByClassName ("delete-post-btn");
+  const deletePostButtons = document.querySelectorAll(".delete-post-btn");
   deletePostButtons.forEach((button) => {
     button.addEventListener("click", deletePost);
+  });
+
+  const editPostButtons = document.querySelectorAll(".edit-post-btn");
+  editPostButtons.forEach((button) => {
+    button.addEventListener("click", editPost);
   });
 });
 
 const viewPost = async (event) => {
-  console.log("View post");
   event.preventDefault();
-  const postId = event.target.getAttribute("data-post-id");
-  await fetch(`/posts/${postId}`, {
-    method: "GET",
-  });
-  document.location.replace(`/post/${postId}`);
-  return postId;
-  // Redirect to the post page
+  const postId = event.target.getAttribute("data-id");
+  console.log(postId);
+  document.location.replace(`/api/posts/view/${postId}`);
 };
 
+const updatePost = document.getElementById("update-post-btn");
 const deletePost = async (event) => {
-  console.log("Delete post");
   event.preventDefault();
-  const postId = event.target.getAttribute("data-post-id");
-  await fetch(`/posts/${postId}`, {
-    method: "DELETE",
-  });
-  document.location.replace("/dashboard");
+  const postId = event.target.getAttribute("data-id");
+  try {
+    const response = await fetch(`/api/posts/${postId}`, {
+      method: "DELETE",
+    });
+    if (response.ok) {
+      document.location.replace("/dashboard");
+    } else {
+      alert("Failed to delete post");
+    }
+  } catch (error) {
+    console.error("Error:", error);
+  }
+};
+
+const editPost = async (event) => {
+  event.preventDefault();
+  const postId = event.target.getAttribute("data-id");
+  document.location.replace(`/api/posts/edit-post/${postId}`);
 };

@@ -2,7 +2,7 @@ const router = require("express").Router();
 const { Post, User, Comment } = require("../../models");
 const withAuth = require("../../utils/auth");
 
-//create a new post
+//create a new post working at 16 september 2024
 router.post("/", withAuth, async (req, res) => {
   try {
     const newPost = await Post.create({
@@ -10,7 +10,7 @@ router.post("/", withAuth, async (req, res) => {
       content: req.body.content,
       user_id: req.session.userId,
     });
-    res.redirect("/dashboard");w
+    res.redirect("/dashboard");
   } catch (err) {
     res.status(400).json(err);
   }
@@ -45,7 +45,8 @@ router.get("/view/:id", withAuth, async (req, res) => {
       .json({ message: "Internal server error", error: err.message });
   }
 });
-//rendering the edit post page
+
+//rendering the edit post page  not edited yet
 router.get("/edit-post/:id", withAuth, async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id);
@@ -56,7 +57,7 @@ router.get("/edit-post/:id", withAuth, async (req, res) => {
   }
 });
 
-//update a post
+//update a post not built yet
 router.put("/:id", withAuth, async (req, res) => {
   try {
     const updatedPost = await Post.update(
@@ -66,20 +67,22 @@ router.put("/:id", withAuth, async (req, res) => {
       },
       {
         where: {
-          id: req.session.userId,
+          id: req.params.id,
+          user_id: req.session.userId
         },
       }
     );
-    if (!updatedPost) {
+    if (!updatedPost) { 
       res.status(404).json({ message: "No post found with this id" });
       return;
     }
+    res.status(200).json({message:"Post updated successfully"});
   } catch (err) {
     res.status(400).json(err);
   }
 });
 
-//delete a post
+//delete a post working at 16 september 2024
 router.delete("/:id", withAuth, async (req, res) => {
   try {
     const deletedPost = await Post.destroy({
@@ -97,4 +100,5 @@ router.delete("/:id", withAuth, async (req, res) => {
     res.status(500).json(err);
   }
 });
+
 module.exports = router;
