@@ -1,4 +1,39 @@
 document.addEventListener("DOMContentLoaded", (event) => {
+  const editPostForm = document.getElementById("edit-post-form");
+
+  if (editPostForm) {
+    editPostForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const postId = document
+        .getElementById("update-post-btn")
+        .getAttribute("data-post-id");
+      const title = document.getElementById("title").value;
+      const content = document.getElementById("content").value;
+
+      try {
+        const response = await fetch(`/api/posts/${postId}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            title,
+            content,
+          }),
+        });
+
+        if (response.ok) {
+          // Redirect to dashboard after successful update
+          document.location.replace("/dashboard");
+        } else {
+          alert("Failed to update post.");
+        }
+      } catch (error) {
+        console.error("Error updating post:", error);
+      }
+    });
+  }
   const newPost = document.getElementById("new-post-btn");
   if (newPost) {
     newPost.addEventListener("click", () => {
@@ -29,7 +64,6 @@ const viewPost = async (event) => {
   document.location.replace(`/api/posts/view/${postId}`);
 };
 
-const updatePost = document.getElementById("update-post-btn");
 const deletePost = async (event) => {
   event.preventDefault();
   const postId = event.target.getAttribute("data-id");
