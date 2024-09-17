@@ -1,44 +1,50 @@
 /* General styles */
 body {
   font-family: Arial, sans-serif;
-  background-color: #e6f3e6;
-  color: #333;
+  background-color: #ccdfcc; /* Light greenish background */
+  color: #2b2b2b;
   margin: 0;
-  padding: 60px 0 40px;
-  /* Adjusted for fixed header and footer */
+  padding: 0;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
 }
 
+/* Container for the whole page */
 .container {
   max-width: 1200px;
-  margin: 5 auto;
+  margin: 0 auto;
   padding: 20px;
-  flex-grow: 2;
 }
 
 /* Header styles */
 header {
-  background-color: #2b2b2b;
+  background-color: #3d2c2c; /* Dark brown background */
   color: #fff;
-  padding: 10px 0;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 1000;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
+/* Logo/Title */
+header h1 {
+  font-size: 2em;
+  background-color: #d5e6d5; /* Light greenish background for title */
+  padding: 5px 15px;
+  border-radius: 5px;
+  color: #3d2c2c; /* Dark text for title */
+  margin: 0;
+}
+
+/* Navigation menu */
 nav {
   display: flex;
-  justify-content: flex-start;
-  padding: 0 20px;
+  justify-content: flex-end;
+  gap: 20px;
 }
 
 nav a {
   color: #fff;
   text-decoration: none;
-  margin-right: 20px;
   font-size: 18px;
   padding: 5px 10px;
   border-radius: 5px;
@@ -46,17 +52,7 @@ nav a {
 }
 
 nav a:hover {
-  background-color: #444;
-}
-
-h1 {
-  font-size: 24px;
-  margin: 10px 20px;
-  padding: 5px 10px;
-  background-color: #e6f3e6;
-  color: #2b2b2b;
-  display: inline-block;
-  border-radius: 5px;
+  background-color: #4b3535; /* Slightly darker brown on hover */
 }
 
 /* Main content styles */
@@ -64,192 +60,131 @@ main {
   padding: 20px;
 }
 
-/* Post styles */
-.post {
-  background-color: #2b2b2b;
-  color: #e6f3e6;
-  margin: 20px;
-  padding: 15px;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.post h2 {
-  margin-top: 0;
-  font-size: 22px;
-}
-
-.post p {
-  margin: 10px 0;
-}
-
-/* Form styles */
-form {
-  background-color: #2b2b2b;
+/* Container for the posts list */
+.post-list {
+  max-width: 800px;
+  margin: 0 auto;
   padding: 20px;
-  border-radius: 5px;
-  margin-bottom: 2 0px;
-  color: #e6f3e6;
 }
 
-input,
-textarea {
+/* Style for each post */
+.post {
+  border: 2px solid #2b2b2b;
+  margin-bottom: 20px;
+  background-color: #d5e6d5; /* Light greenish background */
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+/* New div to contain the heading and posted by details */
+.post-header {
+  background-color: #3d2c2c; /* Dark brown background */
+  color: #fff; /* White text for the heading and posted by */
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+}
+
+/* Style for the post title (heading) */
+.post-header a {
+  font-size: 1.3em;
+  font-weight: bold;
+  color: #fff; /* White text for the heading */
+  text-decoration: none;
+}
+
+/* On hover, change the color of the heading */
+.post-header a:hover {
+  color: #f2f2f2; /* Lighter shade on hover */
+}
+
+/* Style for the posted by details */
+.post-header p {
+  font-size: 0.85em;
+  color: #f2f2f2; /* Light gray for the posted by details */
+  margin: 0;
+}
+
+/* Style for the post content (body) */
+.post-content {
+  padding: 15px;
+  color: #2b2b2b;
+  font-size: 1em;
+  line-height: 1.5em;
+}
+
+/* Form styling (sign-up and login forms) */
+form {
+  background-color: #d5e6d5; /* Light greenish background */
+  padding: 20px;
+  border: 2px solid #2b2b2b;
+  border-radius: 5px;
+  max-width: 400px;
+  margin: 20px auto;
+}
+
+/* Form labels */
+form label {
+  display: block;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #3d2c2c;
+}
+
+/* Form input fields */
+form input[type="text"],
+form input[type="password"] {
   width: 100%;
   padding: 10px;
   margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 3px;
-  background-color: #444;
-  color: #e6f3e6;
+  background-color: #fff;
+  color: #2b2b2b;
 }
 
+/* Button styling */
 button {
-  background-color: #e6f3e6;
-  color: #2b2b2b;
+  width: 100%;
+  padding: 10px;
+  background-color: #4b4b4b; /* Dark gray button background */
+  color: #fff;
   border: none;
-  padding: 10px 20px;
+  border-radius: 5px;
   cursor: pointer;
-  font-size: 16px;
-  border-radius: 3px;
+  font-size: 1em;
   transition: background-color 0.3s;
 }
 
 button:hover {
-  background-color: #c5e0c5;
+  background-color: #6b6b6b; /* Lighter gray on hover */
 }
 
-/* Dashboard styles */
-.dashboard-post {
-  background-color: #2b2b2b;
-  color: #e6f3e6;
-  margin-bottom: 10px;
-  padding: 15px;
-  border-radius: 5px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+/* Link within the form (login/signup switch) */
+form a {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  color: #0b72e7; /* Blue link */
+  text-decoration: none;
 }
 
-.dashboard-post h3 {
-  margin: 0;
-}
-
-.post-actions {
-  display: flex;
-  gap: 10px;
-}
-
-.edit-post-btn,
-.delete-post-btn,
-.view-post-btn {
-  padding: 5px 10px;
-  font-size: 14px;
-}
-
-/* Comment styles */
-.comment {
-  background-color: #f0f0f0;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 3px;
-  color: #333;
+form a:hover {
+  text-decoration: underline;
 }
 
 /* Footer styles */
 footer {
   background-color: #2b2b2b;
-  color: #e6f3e6;
+  color: #fff;
   text-align: center;
   padding: 10px 0;
   position: fixed;
   bottom: 0;
   width: 100%;
-}
-
-/* Login and Signup form styles */
-.login-form,
-.signup-form {
-  max-width: 400px;
-  margin: 0 auto;
-  background-color: #2b2b2b;
-  padding: 20px;
-  border-radius: 5px;
-  color: #81b681;
-}
-
-.login-form h2,
-.signup-form h2 {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.login-form div,
-.signup-form div {
-  margin-bottom: 15px;
-}
-
-.login-form label,
-.signup-form label {
-  display: block;
-  margin-bottom: 5px;
-}
-
-.login-form input,
-.signup-form input {
-  width: 75%;
-  padding: 8px;
-  border: 1px solid #e6f3e6;
-  border-radius: 3px;
-  background-color: #444;
-  color: #e6f3e6;
-}
-
-.login-form button,
-.signup-form button {
-  width: 25%;
-  padding: 10px;
-  background-color: #e6f3e6;
-  color: #2b2b2b;
-  border: none;
-  border-radius: 3px;
-  cursor: pointer;
-  
-  transition: background-color 0.3s;
-}
-
-.login-form button:hover,
-.signup-form button:hover {
-  background-color: #c5e0c5;
-}
-
-.login-form p,
-.signup-form p {
-  text-align: center;
-  margin-top: 15px;
-}
-
-.login-form a,
-.signup-form a {
-  color: #e6f3e6;
-  text-decoration: underline;
-}
-
-/* Single post styles */
-.single-post {
-  background-color: #2b2b2b;
-  color: #e6f3e6;
-  padding: 20px;
-  border-radius: 5px;
-  margin-bottom: 20px;
-}
-
-.single-post h2 {
-  margin-top: 0;
-}
-
-.post-meta {
-  font-style: italic;
-  margin-bottom: 15px;
 }
 
 /* Responsive design */
@@ -261,13 +196,47 @@ footer {
   nav a {
     margin-bottom: 10px;
   }
+}
 
-  .dashboard-post {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+/* General comments section styles */
+.comments {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #e6f3e6; /* Light background, similar to posts */
+  border: 2px solid #2b2b2b; /* Dark border */
+  border-radius: 5px;
+}
 
-  .post-actions {
-    margin-top: 10px;
-  }
+/* Individual comment styling */
+.comment {
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #f9f9f9; /* Light background for comments */
+  border: 1px solid #ccc; /* Subtle border for comments */
+  border-radius: 5px;
+}
+
+/* Comment content */
+.comment p:first-child {
+  color: #2b2b2b; /* Dark text for the comment content */
+  font-size: 1em;
+  margin-bottom: 5px;
+  background-color: #eef5f9; /* Light background for content */
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* Comment username and date */
+.comment p:last-child {
+  font-size: 0.9em;
+  color: #555555; /* Lighter gray for the username and date */
+  margin-top: 5px;
+  text-align: right; /* Align username and date to the right */
+}
+
+/* No comments yet message */
+.comments p {
+  font-size: 1em;
+  color: #555555; /* Gray text for the 'No comments yet' message */
+  text-align: center;
 }

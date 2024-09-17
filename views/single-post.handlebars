@@ -1,21 +1,20 @@
-<article class="post">
-  <h2>{{title}}</h2>
-  <p>Posted by {{user.username}} on {{format_date createdAt}}</p>
-  <p>{{content}}</p>
-</article>
 
-{{#if logged_in}}
-  <form class="comment-form" action="/api/comments/" method="post">
-    <textarea name="content"></textarea>
-    <button type="submit">Add first Comment</button>
-  </form>
-{{/if}}
-
+<div class="post-list">
+  <article class="post">
+    <div class="post-header">
+      <a href="/api/posts/{{id}}">{{title}}</a>
+      <p>Posted by {{user.username}} on {{format_date createdAt}}</p>
+      </div>
+    <p>{{content}}</p>
+</div>
+{{> comment}}
 <div class="comments">
   {{#each comments}}
     <div class="comment">
       <p>{{content}}</p>
-      <p>Commented BY: {{user.username}},ON: {{format_date createdAt}}</p>
+      <p>{{user.username}}, {{format_date createdAt}}</p>
     </div>
+  {{else}}
+    <p>No comments yet. Be the first!</p>
   {{/each}}
 </div>

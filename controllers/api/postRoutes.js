@@ -16,7 +16,7 @@ router.post("/", withAuth, async (req, res) => {
   }
 });
 // Get a single post with its comments and user information
-router.get("/view/:id", withAuth, async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
     const postData = await Post.findByPk(req.params.id, {
       include: [

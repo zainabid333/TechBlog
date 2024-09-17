@@ -1,0 +1,8 @@
+
+  {{#if logged_in}}
+    <form action="/api/comments/" method="post" class="comment-form" id="new-comment">
+    <textarea name="content" id="content" placeholder="Add your comment"></textarea>
+    <input type="hidden" name="post_id" value="{{id}}">
+      <button type="submit">Add Comment</button>
+    </form>
+    {{/if}}

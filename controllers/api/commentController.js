@@ -10,7 +10,7 @@ router.post("/", withAuth, async (req, res) => {
       post_id: req.body.post_id,
       user_id: req.session.userId,
     });
-    res.redirect(`/post/${req.body.post_id}`);
+    res.redirect(`/api/posts/${req.body.post_id}`);
   } catch (err) {
     res.status(400).json(err);
   }

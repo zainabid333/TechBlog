@@ -1,8 +1,11 @@
 <div class="post-list">
   {{#each posts}}
     <article class="post">
-      <h2>{{title}}</h2>
-      <p>Posted by {{user.username}} on {{format_date createdAt}}</p>
+      <div class="post-header">
+        <a href="/api/posts/{{id}}">{{title}}</a>
+        <p>Posted by {{user.username}} on {{format_date createdAt}}</p>
+      </div>
+
       <p>{{content}}</p>
     </article>
   {{/each}}
