@@ -23,8 +23,12 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 const sess = {
-  secret: "Super secret",
-  cookie: {},
+  secret: process.env.SESSION_SECRET || "Super secret",
+  cookie: {
+    maxAge: 3000000, // 30 minutes
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "strict",
+  },
   resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({
