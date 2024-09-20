@@ -25,7 +25,7 @@ app.use(express.static("public"));
 const sess = {
   secret: process.env.SESSION_SECRET || "Super secret",
   cookie: {
-    maxAge: 3000000, // 30 minutes
+    maxAge: 2000000, // 30 minutes
     secure: process.env.NODE_ENV === "production",
     sameSite: "strict",
   },
