@@ -1,7 +1,8 @@
 /* General styles */
 body {
   font-family: Arial, sans-serif;
-  background-color: #ccdfcc; /* Light greenish background */
+  background-color: #ccdfcc;
+  /* Light greenish background */
   color: #2b2b2b;
   margin: 0;
   padding: 0;
@@ -17,7 +18,8 @@ body {
 
 /* Header styles */
 header {
-  background-color: #3d2c2c; /* Dark brown background */
+  background-color: #3d2c2c;
+  /* Dark brown background */
   color: #fff;
   padding: 10px 20px;
   display: flex;
@@ -28,10 +30,12 @@ header {
 /* Logo/Title */
 header h1 {
   font-size: 2em;
-  background-color: #d5e6d5; /* Light greenish background for title */
+  background-color: #d5e6d5;
+  /* Light greenish background for title */
   padding: 5px 15px;
   border-radius: 5px;
-  color: #3d2c2c; /* Dark text for title */
+  color: #3d2c2c;
+  /* Dark text for title */
   margin: 0;
 }
 
@@ -52,7 +56,8 @@ nav a {
 }
 
 nav a:hover {
-  background-color: #4b3535; /* Slightly darker brown on hover */
+  background-color: #4b3535;
+  /* Slightly darker brown on hover */
 }
 
 /* Main content styles */
@@ -71,15 +76,18 @@ main {
 .post {
   border: 2px solid #2b2b2b;
   margin-bottom: 20px;
-  background-color: #d5e6d5; /* Light greenish background */
+  background-color: #d5e6d5;
+  /* Light greenish background */
   border-radius: 5px;
   overflow: hidden;
 }
 
 /* New div to contain the heading and posted by details */
 .post-header {
-  background-color: #3d2c2c; /* Dark brown background */
-  color: #fff; /* White text for the heading and posted by */
+  background-color: #3d2c2c;
+  /* Dark brown background */
+  color: #fff;
+  /* White text for the heading and posted by */
   padding: 10px;
   display: flex;
   justify-content: space-between;
@@ -91,19 +99,22 @@ main {
 .post-header a {
   font-size: 1.3em;
   font-weight: bold;
-  color: #fff; /* White text for the heading */
+  color: #fff;
+  /* White text for the heading */
   text-decoration: none;
 }
 
 /* On hover, change the color of the heading */
 .post-header a:hover {
-  color: #f2f2f2; /* Lighter shade on hover */
+  color: #f2f2f2;
+  /* Lighter shade on hover */
 }
 
 /* Style for the posted by details */
 .post-header p {
   font-size: 0.85em;
-  color: #f2f2f2; /* Light gray for the posted by details */
+  color: #f2f2f2;
+  /* Light gray for the posted by details */
   margin: 0;
 }
 
@@ -117,7 +128,8 @@ main {
 
 /* Form styling (sign-up and login forms) */
 form {
-  background-color: #d5e6d5; /* Light greenish background */
+  background-color: #d5e6d5;
+  /* Light greenish background */
   padding: 20px;
   border: 2px solid #2b2b2b;
   border-radius: 5px;
@@ -148,9 +160,10 @@ form input[type="password"] {
 
 /* Button styling */
 button {
-  width: 100%;
+  width: auto;
   padding: 10px;
-  background-color: #4b4b4b; /* Dark gray button background */
+  background-color: #4b4b4b;
+  /* Dark gray button background */
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -160,7 +173,8 @@ button {
 }
 
 button:hover {
-  background-color: #6b6b6b; /* Lighter gray on hover */
+  background-color: #6b6b6b;
+  /* Lighter gray on hover */
 }
 
 /* Link within the form (login/signup switch) */
@@ -168,7 +182,8 @@ form a {
   display: block;
   text-align: center;
   margin-top: 10px;
-  color: #0b72e7; /* Blue link */
+  color: #0b72e7;
+  /* Blue link */
   text-decoration: none;
 }
 
@@ -187,6 +202,47 @@ footer {
   width: 100%;
 }
 
+.comment-form {
+  background-color: #d5e6d5;
+  /* Light greenish background */
+  padding: 20px;
+  border: 2px solid #2b2b2b;
+  border-radius: 5px;
+  max-width: 400px;
+  margin: 20px auto;
+}
+
+.comment-form textarea {
+  width: 95%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  background-color: #fff;
+  color: #2b2b2b;
+}
+.newPostForm{
+  background-color: #d5e6d5;
+  /* Light greenish background */
+  padding: 20px;
+  border: 2px solid #2b2b2b;
+  border-radius: 5px;
+  max-width: 400px;
+  margin: 20px auto;
+}
+.newPostForm input[type="text"],
+.newPostForm textarea {
+  width: 95%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  background-color: #fff;
+  color: #2b2b2b;
+  resize: none;
+}
+
+
 /* Responsive design */
 @media (max-width: 768px) {
   nav {
@@ -202,8 +258,10 @@ footer {
 .comments {
   margin-top: 20px;
   padding: 15px;
-  background-color: #e6f3e6; /* Light background, similar to posts */
-  border: 2px solid #2b2b2b; /* Dark border */
+  background-color: #e6f3e6;
+  /* Light background, similar to posts */
+  border: 2px solid #2b2b2b;
+  /* Dark border */
   border-radius: 5px;
 }
 
@@ -211,17 +269,21 @@ footer {
 .comment {
   padding: 10px;
   margin-bottom: 10px;
-  background-color: #f9f9f9; /* Light background for comments */
-  border: 1px solid #ccc; /* Subtle border for comments */
+  background-color: #f9f9f9;
+  /* Light background for comments */
+  border: 1px solid #ccc;
+  /* Subtle border for comments */
   border-radius: 5px;
 }
 
 /* Comment content */
 .comment p:first-child {
-  color: #2b2b2b; /* Dark text for the comment content */
+  color: #2b2b2b;
+  /* Dark text for the comment content */
   font-size: 1em;
   margin-bottom: 5px;
-  background-color: #eef5f9; /* Light background for content */
+  background-color: #eef5f9;
+  /* Light background for content */
   padding: 10px;
   border-radius: 5px;
 }
@@ -229,14 +291,17 @@ footer {
 /* Comment username and date */
 .comment p:last-child {
   font-size: 0.9em;
-  color: #555555; /* Lighter gray for the username and date */
+  color: #555555;
+  /* Lighter gray for the username and date */
   margin-top: 5px;
-  text-align: right; /* Align username and date to the right */
+  text-align: right;
+  /* Align username and date to the right */
 }
 
 /* No comments yet message */
 .comments p {
   font-size: 1em;
-  color: #555555; /* Gray text for the 'No comments yet' message */
+  color: #555555;
+  /* Gray text for the 'No comments yet' message */
   text-align: center;
 }

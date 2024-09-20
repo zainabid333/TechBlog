@@ -11,9 +11,7 @@ const sequelize = process.env.DB_URL
       {
         host: process.env.DB_HOST || "localhost",
         dialect: "postgres",
-        // port: process.env.DB_PORT || 5432
+        port: process.env.DB_PORT || 5432
       }
     );
-
-
 module.exports = sequelize;

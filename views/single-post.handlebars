@@ -7,12 +7,15 @@
       </div>
     <p>{{content}}</p>
 </div>
+
 {{> comment}}
-<div class="comments">
+<div class="post-list">
   {{#each comments}}
-    <div class="comment">
+    <div class="post">
+      <div class="post-header">
+        <p>Comment by {{user.username}} on {{format_date createdAt}}</p>
+        </div>
       <p>{{content}}</p>
-      <p>{{user.username}}, {{format_date createdAt}}</p>
     </div>
   {{else}}
     <p>No comments yet. Be the first!</p>
