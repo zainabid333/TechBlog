@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Post, User, Comment } = require("../../models");
+const { Post, User, Comment } = require("../../dbtable");
 const withAuth = require("../../utils/auth");
 
 //create a new post working at 16 september 2024
@@ -68,15 +68,15 @@ router.put("/:id", withAuth, async (req, res) => {
       {
         where: {
           id: req.params.id,
-          user_id: req.session.userId
+          user_id: req.session.userId,
         },
       }
     );
-    if (!updatedPost) { 
+    if (!updatedPost) {
       res.status(404).json({ message: "No post found with this id" });
       return;
     }
-    res.status(200).json({message:"Post updated successfully"});
+    res.status(200).json({ message: "Post updated successfully" });
   } catch (err) {
     res.status(400).json(err);
   }
