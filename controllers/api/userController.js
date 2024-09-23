@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User } = require("../../dbtable");
+const { User } = require("../../models");
 
 // SignUp route
 router.post("/signup", async (req, res) => {
