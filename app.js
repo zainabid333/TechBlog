@@ -28,11 +28,12 @@ const sess = {
   secret: process.env.SESSION_SECRET || "Super secret",
   cookie: {
     maxAge: 2000000, // 30 minutes
-    secure: process.env.NODE_ENV === "production",
+    httpOnly: true,
+    secure: false,
     sameSite: "strict",
   },
   resave: false,
-  saveUninitialized: true,
+  saveUninitialized: false,
   store: new SequelizeStore({
     db: sequelize,
   }),
