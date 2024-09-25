@@ -1,133 +1,89 @@
-# 14 Model-View-Controller (MVC): Tech Blog
+# Tech Blog
 
-## Your Task
+## Description
 
-Writing about tech can be just as important as making it. Developers spend plenty of time creating new applications and debugging existing codebases, but most developers also spend at least some of their time reading and writing about technical concepts, recent advancements, and new technologies. A simple Google search for any concept covered in this course returns thousands of think pieces and tutorials from developers of all skill levels!
+Tech Blog is a CMS-style blog site where developers can publish their blog posts and comment on other developers' posts. This application follows the MVC paradigm, uses Handlebars.js as the templating language, Sequelize as the ORM, and includes authentication using express-session.
 
-Your task this week is to build a CMS-style blog site similar to a Wordpress site, where developers can publish their blog posts and comment on other developers’ posts as well. You’ll build this site completely from scratch and deploy it to Render. Your app will follow the MVC paradigm in its architectural structure, using Handlebars.js as the templating language, Sequelize as the ORM, and the express-session npm package for authentication.
+## Table of Contents
 
-## User Story
+- [Installation](#installation)
+- [Usage](#usage)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Contributing](#contributing)
+- [License](#license)
 
-```md
-AS A developer who writes about tech
-I WANT a CMS-style blog site
-SO THAT I can publish articles, blog posts, and my thoughts and opinions
+## Installation
+
+1. Clone the repository to your local machine.
+2. Navigate to the project directory.
+3. Run `npm install` to install the necessary dependencies.
+4. Set up your PostgreSQL database.
+5. Create a `.env` file in the root directory and add your database credentials and session secret:
+
+```
+DB_NAME='your_database_name'
+DB_USER='your_database_user'
+DB_PASSWORD='your_database_password'
+SESSION_SECRET='your_session_secret'
 ```
 
-## Acceptance Criteria
+6. Run `npm start` to start the server.
 
-```md
-GIVEN a CMS-style blog site
-WHEN I visit the site for the first time
-THEN I am presented with the homepage, which includes existing blog posts if any have been posted; navigation links for the homepage and the dashboard; and the option to log in
-WHEN I click on the homepage option
-THEN I am taken to the homepage
-WHEN I click on any other links in the navigation
-THEN I am prompted to either sign up or sign in
-WHEN I choose to sign up
-THEN I am prompted to create a username and password
-WHEN I click on the sign-up button
-THEN my user credentials are saved and I am logged into the site
-WHEN I revisit the site at a later time and choose to sign in
-THEN I am prompted to enter my username and password
-WHEN I am signed in to the site
-THEN I see navigation links for the homepage, the dashboard, and the option to log out
-WHEN I click on the homepage option in the navigation
-THEN I am taken to the homepage and presented with existing blog posts that include the post title and the date created
-WHEN I click on an existing blog post
-THEN I am presented with the post title, contents, post creator’s username, and date created for that post and have the option to leave a comment
-WHEN I enter a comment and click on the submit button while signed in
-THEN the comment is saved and the post is updated to display the comment, the comment creator’s username, and the date created
-WHEN I click on the dashboard option in the navigation
-THEN I am taken to the dashboard and presented with any blog posts I have already created and the option to add a new blog post
-WHEN I click on the button to add a new blog post
-THEN I am prompted to enter both a title and contents for my blog post
-WHEN I click on the button to create a new blog post
-THEN the title and contents of my post are saved and I am taken back to an updated dashboard with my new blog post
-WHEN I click on one of my existing posts in the dashboard
-THEN I am able to delete or update my post and taken back to an updated dashboard
-WHEN I click on the logout option in the navigation
-THEN I am signed out of the site
-WHEN I am idle on the site for more than a set time
-THEN I am able to view posts and comments but I am prompted to log in again before I can add, update, or delete posts
-```
+## Usage
 
-## Mock-Up
+After installation, you can access the application by navigating to `http://localhost:3000` in your web browser. From there, you can:
 
-The following animation demonstrates the application functionality:
+- View existing blog posts on the homepage
+- Sign up for an account or log in
+- Create, update, and delete your own blog posts
+- Comment on blog posts
 
-![Animation cycles through signing into the app, clicking on buttons, and updating blog posts.](./Assets/14-mvc-homework-demo-01.gif)
 
-## Getting Started
+You can use the online deployed version to test the application
 
-Your application’s folder structure must follow the Model-View-Controller paradigm. You’ll need to use the [express-handlebars](https://www.npmjs.com/package/express-handlebars) package to implement Handlebars.js for your Views, use the [pg](https://www.npmjs.com/package/pg) and [Sequelize](https://www.npmjs.com/package/sequelize) packages to connect to a PostgreSQL database for your Models, and create an Express.js API for your Controllers.
+[TechBlog](https://techblog-9qhc.onrender.com/)
 
-You’ll also need the [dotenv package](https://www.npmjs.com/package/dotenv) to use environment variables, the [bcrypt package](https://www.npmjs.com/package/bcrypt) to hash passwords, and the [express-session](https://www.npmjs.com/package/express-session) and [connect-session-sequelize](https://www.npmjs.com/package/connect-session-sequelize) packages to add authentication.
+## Features
 
-**Note**: The [express-session](https://www.npmjs.com/package/express-session) package stores the session data on the client in a cookie. When you are idle on the site for more than a set time, the cookie will expire and you will be required to log in again to start a new session. This is the default behavior and you do not have to do anything to your application other than implement the npm package.
+- User authentication (signup, login, logout)
+- Create, read, update, and delete blog posts
+- Comment on blog posts
+- Responsive design for various screen sizes
+- Session timeout for security
 
-## Grading Requirements
+## Technologies Used
 
-> **Note**: If a Challenge assignment submission is marked as “0”, it is considered incomplete and will not count towards your graduation requirements. Examples of incomplete submissions include the following:
->
-> - A repository that has no code
->
-> - A repository that includes a unique name but nothing else
->
-> - A repository that includes only a README file but nothing else
->
-> - A repository that only includes starter code
+- Node.js
+- Express.js
+- Handlebars.js
+- Sequelize ORM
+- PostgreSQL
+- express-session for authentication
+- bcrypt for password hashing
+- dotenv for environment variables
 
-This Challenge is graded based on the following criteria:
+## Screen Shots
 
-### Technical Acceptance Criteria: 40%
+![Home Page for TechBlog](./Assets/Home.png)
+![Login/SignUp](./Assets/Login-Signup.png)
+![Dashboard](./Assets/Dashboard.png)
 
-- Satisfies all of the preceding acceptance criteria plus the following:
+## Contributing
 
-  - Application’s folder structure follows the Model-View-Controller paradigm.
+Contributions to improve Tech Blog are welcome. Please follow these steps to contribute:
 
-  - Uses the [express-handlebars](https://www.npmjs.com/package/express-handlebars) package to implement Handlebars.js for your Views.
+1. Fork the repository
+2. Create a new branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-  - Application must be deployed to Render.
+## License
 
-### Deployment: 32%
-
-- Application deployed at live URL.
-
-- Application loads with no errors.
-
-- Application GitHub URL submitted.
-
-- GitHub repository contains application code.
-
-### Application Quality: 15%
-
-- User experience is intuitive and easy to navigate.
-
-- User interface style is clean and polished.
-
-- Application resembles the mock-up functionality provided in the Challenge instructions.
-
-### Repository Quality: 13%
-
-- Repository has a unique name.
-
-- Repository follows best practices for file structure and naming conventions.
-
-- Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
-
-- Repository contains multiple descriptive commit messages.
-
-- Repository contains quality readme file with description, screenshot, and link to deployed application.
-
-## Review
-
-You are required to submit BOTH of the following for review:
-
-- The URL of the functional, deployed application.
-
-- The URL of the GitHub repository, with a unique name and a readme describing the project.
+This project is licensed under the MIT License.
 
 ---
 
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+For any additional questions or concerns, please contact the
+[zainabid333](https://github.com/zainabid333/TechBlog)
